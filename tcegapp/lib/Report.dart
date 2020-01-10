@@ -5,14 +5,19 @@ import 'main.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:image_picker/image_picker.dart';
 //import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
-
+final databaseReference = Firestore.instance;
 String dropdownValue = 'IT';
+
+var department='IT';
+var description;
+var location;
+var currentUser='/Users/LyAhgM0Du7ajtAhEEYkW';
 
 class ReportPg extends StatefulWidget {
   @override
@@ -62,23 +67,10 @@ class ReportPgState extends State<ReportPg> {
                     children: <Widget>[
 
 
-                          TextFormField(
-                          decoration: InputDecoration(labelText: 'Enter Name'
-                            ),
-                               controller: myController,
+                          
+          
 
-
-          )
-          ,
-
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Enter Surname'
-                        ),
-                        controller: myControllerSurname,
-
-
-                      )
-                      ,
+                    
                       TextFormField(
                         decoration: InputDecoration(labelText: 'Description'
                         ),
@@ -111,7 +103,7 @@ class ReportPgState extends State<ReportPg> {
                             onChanged: (String newValue) {
                               setState(() {
                                 dropdownValue = newValue;
-
+                                department=newValue;
 
 
 
@@ -141,12 +133,7 @@ class ReportPgState extends State<ReportPg> {
                             onPressed:() {
                               //uploadPic(context);
                               getImage();
-                              _getCurrentLocation();
-
-                              if (_currentPosition != null){
-
-
-                                print("LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}");}
+                            
 
 
                             }
@@ -165,14 +152,24 @@ class ReportPgState extends State<ReportPg> {
                             textColor: Colors.white,
                             color: colorCustom,
                             onPressed:() {
-                              //uploadPic(context);
-                              getImage();
-                              _getCurrentLocation();
+
+                              description= myControllerDescription.text;
+
+                                _getCurrentLocation();
 
                               if (_currentPosition != null){
 
 
                                 print("LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}");}
+                               location= _currentPosition;
+                               if(description==''){
+                                  _ackAlertDes(context);
+
+                               }else
+                               {createRecord();
+                               _ackAlertSub(context);
+                               }
+                              
 
 
                             }
@@ -232,3 +229,60 @@ class ReportPgState extends State<ReportPg> {
 
 
 
+void createRecord() {
+
+var now = new DateTime.now();
+
+ databaseReference.collection('Reports').document()
+ .setData({ 'Date': now, 'Department': department , 'Description':description, 'Location':location,'Panic':'False','UserID':currentUser});
+}
+void getData() {
+databaseReference
+.collection("TestTabel")
+.getDocuments()
+.then((QuerySnapshot snapshot) {
+snapshot.documents.forEach((f) => print('${f.data}}'));
+});
+}
+
+
+Future<void> _ackAlertDes(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Error'),
+        content: const Text('Please enter a description'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
+Future<void> _ackAlertSub(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Submitted'),
+        content: const Text('Report has been submited'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
