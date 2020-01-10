@@ -8,10 +8,21 @@ import 'screens/home_screen.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
+// var actionCodeSettings = ActionCodeSettings.Builder()
+//         // URL you want to redirect back to. The domain (www.example.com) for this
+//         // URL must be whitelisted in the Firebase Console.
+//         .setUrl("https://vdvdatabase.firebaseapp.com/__/auth/action?mode=<action>&oobCode=<code>")
+//         .setHandleCodeInApp(true)
+//         .setIOSBundleId("com.example.ios")
+//         .setAndroidPackageName(
+//                 "com.example.android",
+//                 true, /* installIfNotAvailable */
+//                 "12" /* minimumVersion */)
+//         .build();
 
 void main() => runApp(Login());
 

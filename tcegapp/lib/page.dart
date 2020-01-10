@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 
 import 'contacts.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'BookingsList.dart';
-
+final databaseReference = Firestore.instance;
 
 
 var name ='Kyle Potgieter' ;
@@ -115,7 +115,7 @@ class MyHomePageState extends State<MyHomePageProfile>  {
 
                   textColor: Colors.white,
                   color: colorCustom,
-                  onPressed:()=> _goToLogin(context),
+                  onPressed:()=> getData(),
                   icon: Icon(Icons.cancel),
                   label: Text('Logout'),
                 )
@@ -136,9 +136,18 @@ class MyHomePageState extends State<MyHomePageProfile>  {
 
 
 }
-
-
-
+// void createRecord() {
+// databaseReference.collection('TestTabel').document()
+// .setData({ 'name': 'hello', 'surname': 'worldyayy' });
+// }
+void getData() {
+databaseReference
+.collection("TestTabel")
+.getDocuments()
+.then((QuerySnapshot snapshot) {
+snapshot.documents.forEach((f) => print('${f.data}}'));
+});
+}
 
 
 
