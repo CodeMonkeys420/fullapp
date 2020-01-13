@@ -20,7 +20,7 @@ bool flag = false;
 var  booking  ;
 var IdexCounter=1;
 var imagePath;
-
+var FacilityReference;
 /*Set <String> unselectableDates= {'2019-12-08'};*/
 String sanitizeDateTime(DateTime dateTime) => "${dateTime.year}-${dateTime.month}-${dateTime.day}";
 
@@ -270,7 +270,7 @@ Text LabelIndex(var indexNum, var nameIndex){
       if(nameIndex==0)
 
       {
-
+        
         return   Text('POLO CLUB RESTAURANT');
       }
       else if(nameIndex==1)
@@ -279,6 +279,8 @@ Text LabelIndex(var indexNum, var nameIndex){
           return   Text('THE VALLEY RESTAURANT');
         }
       else if(nameIndex==2) {
+
+        
         return Text("Fleet Coffee Roastery");
       }
 
@@ -333,7 +335,7 @@ Text LabelIndex(var indexNum, var nameIndex){
       if(nameIndex==0)
 
       {
-
+            
         return   Text('PEARL VALLEY JACK NICKLAUS SIGNATURE GOLF COURSE',style: TextStyle(fontSize: 10),);
 
       }
@@ -342,7 +344,7 @@ Text LabelIndex(var indexNum, var nameIndex){
       {
 
 
-
+              
           return   Text('SwingFit Training Academy');
 
       }
@@ -368,6 +370,8 @@ Text LabelIndex(var indexNum, var nameIndex){
       }
     else
       {
+
+         
         return  Text('CAMELOT SPA VAL DE VIE');
 
 
@@ -388,30 +392,36 @@ Text LabelIndex(var indexNum, var nameIndex){
       if(nameIndex==0)
 
       {
+        
         return   Text('Polo Academy Lessons');
       }
       else if (nameIndex==1)
         {
+          
           return   Text('Tennis');
 
         }
       else if (nameIndex==2)
       {
+        
         return   Text('Equestrian competitive coaching');
 
       }
       else if (nameIndex==3)
       {
+        
         return   Text('Equestrian riding school');
 
       }
       else if (nameIndex==4)
       {
+        
         return   Text('Pearl valley Boma');
 
       }
       else if (nameIndex==5)
       {
+        
         return   Text('Ryk Neethling swim school');
 
       }
@@ -429,6 +439,7 @@ Text LabelIndex(var indexNum, var nameIndex){
     }
     else
     {
+      
       return  Text('PEARL VALLEY HOTEL BY MANTIS');
 
 
@@ -844,13 +855,16 @@ void PlaceName (var indexNum, var nameIndex) {
 
 
       if (nameIndex == 0) {
+          FacilityReference = '/Facilities/Yz4sb6xBx2hvdpN7HmZX';
       Place = 'POLO CLUB RESTAURANT';
       }
       else if (nameIndex == 1) {
         Place = 'THE VALLEY RESTAURANT';
+        FacilityReference = '/Facilities/5mNcafO5KtopVZaEKCIq';
       }
       else if (nameIndex == 2) {
-        Place = 'REUBEN’S AND CO CAFÈ';
+        FacilityReference = '/Facilities/S0zfNxaQSqoKAzRhwIuZ';
+        Place = 'Fleet Coffee roastery ';
       }
 
   }
@@ -858,6 +872,7 @@ void PlaceName (var indexNum, var nameIndex) {
 
 
     if (nameIndex == 0) {
+      FacilityReference='/Facilities/lbAMWRvPesPkVypJfOkb';
       Place = 'L’HUGUENOT VENUE & VINOTEQUE';
     }
 
@@ -870,9 +885,10 @@ void PlaceName (var indexNum, var nameIndex) {
 
     if (nameIndex == 0) {
       Place =   'PEARL VALLEY JACK NICKLAUS SIGNATURE GOLF COURSE';
+      FacilityReference = '/Facilities/isBzGSOgF7qS3PxCyAUv';
     }
     else{
-
+FacilityReference = '/Facilities/BdgxN0CITYMYJJqOQ06f';
       Place = 'SwingFit Training Academy';
     }
 
@@ -887,6 +903,7 @@ void PlaceName (var indexNum, var nameIndex) {
 
 
     if (nameIndex == 0) {
+       FacilityReference = '/Facilities/5rbhWfXzl5Loq6oCrreU';
       Place = 'CAMELOT SPA VAL DE VIE';
     }
 
@@ -899,6 +916,8 @@ void PlaceName (var indexNum, var nameIndex) {
 
     if (nameIndex == 0) {
       Place = 'PEARL VALLEY HOTEL BY MANTIS';
+       FacilityReference = '/Facilities/CHYKh3mWb3xVm2m2EHwN';
+      
     }
 
 
@@ -911,38 +930,39 @@ void PlaceName (var indexNum, var nameIndex) {
     if(nameIndex==0)
 
     {
-      Place = 'VAL DE VIE EQUESTRIAN FACILITY';
+      FacilityReference = '/Facilities/DlaQvFB5NShSbh0lCoaA';
+      Place = 'Polo Academy Lessons';
     }
     else if (nameIndex==1)
     {
-      Place =    'LIVERY';
-
+      Place =    'Tennis';
+      FacilityReference = '/Facilities/uCqK1eTNgERkvagM8n7L';
     }
     else if (nameIndex==2)
     {
-      Place = 'COMPETITIVE COACHING';
+      FacilityReference = '/Facilities/tjkK8Nj780J726Z3gARA';
+      Place = 'Equestrian competitive coaching';
 
     }
     else if (nameIndex==3)
     {
-      Place = 'PEARL VALLEY EQUESTRIAN CENTRE';
+      FacilityReference = '/Facilities/pVNuIBj0uM300FJPszet';
+      Place = 'Equestrian riding school';
 
     }
     else if (nameIndex==4)
     {
-      Place = 'INSTRUCTION';
+      FacilityReference = '/Facilities/hCKDdzKRknzhVfT3yA9h';
+      Place = 'Pearl valley Boma';
 
     }
     else if (nameIndex==5)
     {
-      Place = 'RIDING SCHOOL';
+      FacilityReference = '/Facilities/6pjxPBq1RQ61FmpXpH1p';
+      Place = 'Ryk Neethling swim school';
 
     }
-    else if (nameIndex==6)
-    {
-      Place = 'CHILDREN’S HOLIDAY ACTIVITIES';
-
-    }
+   
 
 
 
@@ -1151,4 +1171,6 @@ print(indexNum.toString()+' ' + index.toString());
     }
 
   }
+}
+
 }

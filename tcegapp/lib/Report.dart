@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'main.dart';
 
 import 'package:flutter/services.dart';
@@ -13,10 +13,12 @@ import 'dart:io';
 import 'package:path/path.dart';
 final databaseReference = Firestore.instance;
 String dropdownValue = 'IT';
-
+var imagepath;
 var department='IT';
 var description;
 var location;
+var longitude;
+var latitude;
 var currentUser='/Users/LyAhgM0Du7ajtAhEEYkW';
 
 class ReportPg extends StatefulWidget {
@@ -39,6 +41,7 @@ class ReportPgState extends State<ReportPg> {
       setState(() {
         _image = image;
         print('Image Path $_image');
+        imagepath=_image;
       });
     }
 
@@ -161,7 +164,11 @@ class ReportPgState extends State<ReportPg> {
 
 
                                 print("LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}");}
-                               location= _currentPosition;
+                               latitude = _currentPosition.latitude;
+                               longitude = _currentPosition.longitude;
+
+
+
                                if(description==''){
                                   _ackAlertDes(context);
 
@@ -229,13 +236,30 @@ class ReportPgState extends State<ReportPg> {
 
 
 
-void createRecord() {
+void createRecord() async{
 
 var now = new DateTime.now();
 
  databaseReference.collection('Reports').document()
- .setData({ 'Date': now, 'Department': department , 'Description':description, 'Location':location,'Panic':'False','UserID':currentUser});
+ .setData({ 'Date': now, 'Department': department , 'Description':description, 'Location':'Latitude: ' +latitude.toString()+' Longitude: '+longitude.toString(),'UserID':currentUser});
+
+
+final Email email = Email(
+  body: 'Department: '+ department +' has a the following problem to check '+'Description:'+description +'at the following location'+latitude.toString()+' Longitude: '+longitude.toString(),
+  subject: 'Error Report',
+  recipients: ['mario@tcg.co.za'],
+  cc: [''],
+  bcc: [''],
+  attachmentPath: '',
+  isHTML: false,
+);
+
+await FlutterEmailSender.send(email);
+
+
 }
+
+
 void getData() {
 databaseReference
 .collection("TestTabel")
@@ -243,6 +267,7 @@ databaseReference
 .then((QuerySnapshot snapshot) {
 snapshot.documents.forEach((f) => print('${f.data}}'));
 });
+
 }
 
 
@@ -285,4 +310,52 @@ Future<void> _ackAlertSub(BuildContext context) {
       );
     },
   );
+}
+
+
+
+
+
+ class FlutterEmailSender {
+  static const MethodChannel _channel =
+      const MethodChannel('flutter_email_sender');
+
+  static Future<void> send(Email mail) {
+    return _channel.invokeMethod('send', mail.toJson());
+  }
+}
+
+
+
+
+
+class Email {
+  final String subject;
+  final List<String> recipients;
+  final List<String> cc;
+  final List<String> bcc;
+  final String body;
+  final String attachmentPath;
+  final bool isHTML;
+  Email({
+    this.subject = '',
+    this.recipients = const [],
+    this.cc = const [],
+    this.bcc = const [],
+    this.body = '',
+    this.attachmentPath,
+    this.isHTML = false,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'subject': subject,
+      'body': body,
+      'recipients': recipients,
+      'cc': cc,
+      'bcc': bcc,
+      'attachment_path': attachmentPath,
+      'is_html': isHTML
+    };
+  }
 }
