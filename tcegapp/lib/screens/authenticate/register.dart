@@ -1,6 +1,6 @@
-import 'package:brew_crew/services/auth.dart';
-import 'package:brew_crew/shared/constants.dart';
-import 'package:brew_crew/shared/loading.dart';
+import 'package:tcegapp/services/auth.dart';
+import 'package:tcegapp/shared/constants.dart';
+import 'package:tcegapp/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {

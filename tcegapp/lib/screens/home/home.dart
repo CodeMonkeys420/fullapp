@@ -1,8 +1,8 @@
-import 'package:brew_crew/models/brew.dart';
-import 'package:brew_crew/screens/home/brew_list.dart';
-import 'package:brew_crew/screens/home/settings_form.dart';
-import 'package:brew_crew/services/auth.dart';
-import 'package:brew_crew/services/database.dart';
+import 'package:tcegapp/models/brew.dart';
+import 'package:tcegapp/screens/home/brew_list.dart';
+import 'package:tcegapp/screens/home/settings_form.dart';
+import 'package:tcegapp/services/auth.dart';
+import 'package:tcegapp/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,7 +1,7 @@
-import 'package:brew_crew/models/user.dart';
-import 'package:brew_crew/services/database.dart';
-import 'package:brew_crew/shared/constants.dart';
-import 'package:brew_crew/shared/loading.dart';
+import 'package:tcegapp/models/user.dart';
+import 'package:tcegapp/services/database.dart';
+import 'package:tcegapp/shared/constants.dart';
+import 'package:tcegapp/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

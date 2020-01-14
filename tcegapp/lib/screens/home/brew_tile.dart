@@ -1,4 +1,4 @@
-import 'package:brew_crew/models/brew.dart';
+import 'package:tcegapp/models/brew.dart';
 import 'package:flutter/material.dart';
 
 class BrewTile extends StatelessWidget {
