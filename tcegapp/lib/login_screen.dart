@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
           print('Signup info');
           print('Name: ${loginData.name}');
           print('Password: ${loginData.password}');
-          return _loginUser(loginData);
+          return _loginUser(loginData);//verander die signup na register van project 11
         },
         onSubmitAnimationCompleted: () {
           Navigator.of(context).pushReplacement(FadePageRoute(
