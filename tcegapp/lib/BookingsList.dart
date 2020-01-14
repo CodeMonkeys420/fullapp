@@ -10,6 +10,7 @@ int counter =0;
 var BookingsL = new List();
 var AlreadyBookedD = new List();
 var timeL ;
+var DeletedId;
 
 String sanitizeDateTime(DateTime dateTime) => "${dateTime.year}-${dateTime.month}-${dateTime.day}";
 
@@ -49,14 +50,14 @@ class BookListState extends State<BookList> {
 
 class NameL{
 
-  NameL(var name , var num, var date, var time, var place , var counterOne){
+  NameL(var name , var num, var date, var time, var place , var counterOne ,var DeleteID){
     nameList = name;
     numL = num;
     dateL = date;
     timeL = time;
     PlaceL = place;
     counter= counterOne;
-
+     DeletedId = DeleteID;
 
     BookingsL.add(PlaceL+' '+nameList+' '+numL+' '+ dateL+' '+time);
     AlreadyBookedD.add(Place+' '+(sanitizeDateTime(bookingsDate)).toString()+' '+time);
@@ -102,16 +103,9 @@ class DeleteItemInListViewPopupMenuState
   _onSelected(dynamic val) {
     setState(() => AlreadyBookedD.removeWhere((data) => data == val));
 
-/*for(var e in unselectableDates){
 
-  if(val.contains(e)){
-    print(e);
-    unselectableDates.remove(e);
-  }
-
-
-}*/
-
+         databaseReference.collection("Bookings").document(DeletedId)
+        .delete();
 
 
    AlreadyBD(AlreadyBookedD);
