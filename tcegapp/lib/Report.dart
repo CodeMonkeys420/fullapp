@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
+
 import 'main.dart';
 
 import 'package:flutter/services.dart';
@@ -55,6 +55,8 @@ class ReportPgState extends State<ReportPg> {
     //    Scaffold.of(context).showSnackBar(SnackBar(content: Text('Profile Picture Uploaded')));
    //   });
   //  }
+
+  
    return new Scaffold(
 
 
@@ -244,17 +246,9 @@ var now = new DateTime.now();
  .setData({ 'Date': now, 'Department': department , 'Description':description, 'Location':'Latitude: ' +latitude.toString()+' Longitude: '+longitude.toString(),'UserID':currentUser});
 
 
-final Email email = Email(
-  body: 'Department: '+ department +' has a the following problem to check '+'Description:'+description +'at the following location'+latitude.toString()+' Longitude: '+longitude.toString(),
-  subject: 'Error Report',
-  recipients: ['mario@tcg.co.za'],
-  cc: [''],
-  bcc: [''],
-  attachmentPath: '',
-  isHTML: false,
-);
 
-await FlutterEmailSender.send(email);
+
+//await FlutterEmailSender.send(email);
 
 
 }
@@ -316,14 +310,6 @@ Future<void> _ackAlertSub(BuildContext context) {
 
 
 
- class FlutterEmailSender {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_email_sender');
-
-  static Future<void> send(Email mail) {
-    return _channel.invokeMethod('send', mail.toJson());
-  }
-}
 
 
 

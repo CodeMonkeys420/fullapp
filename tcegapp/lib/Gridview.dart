@@ -1,4 +1,4 @@
-import 'dart:html';
+
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'main.dart';
@@ -658,10 +658,7 @@ class bookSpotState extends State<bookSpot> {
                                     context: context,
                                     firstDate: DateTime.now(),
                                   initialDate: currentValue ?? DateTime.now(),
-                                  /*  selectableDayPredicate: (DateTime val) {
-                                      String sanitized = sanitizeDateTime(val);
-                                      return !unselectableDates.contains(sanitized);
-                                    },*/
+                                
                                     lastDate: DateTime(2100));
 
 

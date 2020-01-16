@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tcegapp/Gridview.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 var nameList ;
 var numL ;
 var dateL;
@@ -9,6 +9,7 @@ var PlaceL;
 int counter =0;
 var BookingsL = new List();
 var AlreadyBookedD = new List();
+var BookedID = new List();
 var timeL ;
 var DeletedId;
 
@@ -24,7 +25,6 @@ class BookList extends StatefulWidget {
 }
 
 
-
 class BookListState extends State<BookList> {
 
 
@@ -32,7 +32,8 @@ class BookListState extends State<BookList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( appBar: AppBar(
+
+    return new  Scaffold( appBar: AppBar(
       title: Text("Bookings Made"),
 
     ),
@@ -44,6 +45,8 @@ class BookListState extends State<BookList> {
     );
 
   }
+
+ 
 
 }
 
@@ -58,9 +61,11 @@ class NameL{
     PlaceL = place;
     counter= counterOne;
      DeletedId = DeleteID;
-
+    BookedID.add(DeletedId);
     BookingsL.add(PlaceL+' '+nameList+' '+numL+' '+ dateL+' '+time);
     AlreadyBookedD.add(Place+' '+(sanitizeDateTime(bookingsDate)).toString()+' '+time);
+
+    print(BookedID);
   }
 
 
@@ -91,6 +96,7 @@ int ItemNum(){
 
 
 class DeleteItemInListViewPopupMenu extends StatefulWidget {
+  
   @override
   DeleteItemInListViewPopupMenuState createState() {
     return new DeleteItemInListViewPopupMenuState();
@@ -98,14 +104,16 @@ class DeleteItemInListViewPopupMenu extends StatefulWidget {
 }
 
 class DeleteItemInListViewPopupMenuState
+
+
     extends State<DeleteItemInListViewPopupMenu> {
 
   _onSelected(dynamic val) {
-    setState(() => AlreadyBookedD.removeWhere((data) => data == val));
+ setState(() => AlreadyBookedD.removeWhere((data) => data == val));
+setState(() => dbBookingsListNew.removeWhere((data) => data == val));
 
-
-         databaseReference.collection("Bookings").document(DeletedId)
-        .delete();
+      //   databaseReference.collection("Bookings").document(ID)
+       // .delete();
 
 
    AlreadyBD(AlreadyBookedD);
@@ -117,8 +125,11 @@ class DeleteItemInListViewPopupMenuState
 
     return Scaffold(
 
-      body: ListView(
-        children: AlreadyBookedD
+      body: 
+      
+
+      ListView(
+        children: dbBookingsListNew
             .map((data) => ListTile(
           title: Text(data),
           trailing: PopupMenuButton(
@@ -134,6 +145,56 @@ class DeleteItemInListViewPopupMenuState
         ))
             .toList(),
       ),
-    );
+  );
   }
+
+  
 }
+
+
+
+
+
+
+var dbBookingsListNew = new List();
+var iDList = new List();
+
+
+class gettingDataP{
+
+gettingDataP(){
+ 
+
+setDate();
+
+
+}
+
+void setDate(){
+  
+databaseReference
+.collection("Bookings")
+.getDocuments()
+.then((QuerySnapshot snapshot) {
+snapshot.documents.forEach((f) { 
+  dbBookingsListNew.add('${f.data}}');
+iDList.add(
+  f.documentID);
+
+});
+});
+print(dbBookingsListNew.toString()+' list 1@@@@@@@@@@@@@@@');
+print(iDList.toString()+' list 2');
+}
+
+
+
+
+
+
+}
+
+
+
+
+

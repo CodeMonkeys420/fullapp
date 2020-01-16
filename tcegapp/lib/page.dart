@@ -26,7 +26,7 @@ class MyHomePageState extends State<MyHomePageProfile>  {
 
         .then((_) => false);
   }
-
+   
   @override
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
@@ -86,9 +86,12 @@ class MyHomePageState extends State<MyHomePageProfile>  {
 
                   textColor: Colors.white,
                   color: colorCustom,
-                  onPressed:(){
-
-
+                  onPressed:()async{
+                       
+                                                        
+                     await gettingDataP();
+                     dbBookingsListNew.clear();
+                      
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => BookList()),
@@ -140,16 +143,19 @@ class MyHomePageState extends State<MyHomePageProfile>  {
 // databaseReference.collection('TestTabel').document()
 // .setData({ 'name': 'hello', 'surname': 'worldyayy' });
 // }
-void getData() {
-databaseReference
-.collection("TestTabel")
+
+
+
+
+getData(){
+
+  databaseReference
+.collection("Bookings")
 .getDocuments()
 .then((QuerySnapshot snapshot) {
 snapshot.documents.forEach((f) => print('${f.data}}'));
 });
 }
-
-
 
 class editPage extends StatelessWidget {
 
