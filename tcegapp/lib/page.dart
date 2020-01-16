@@ -89,8 +89,8 @@ class MyHomePageState extends State<MyHomePageProfile>  {
                   onPressed:()async{
                        
                                                         
-                     await gettingDataP();
-                     dbBookingsListNew.clear();
+                      gettingDataP();
+                    // dbBookingsListNew.clear();
                       
                     Navigator.push(
                       context,

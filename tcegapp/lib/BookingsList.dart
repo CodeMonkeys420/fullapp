@@ -109,11 +109,13 @@ class DeleteItemInListViewPopupMenuState
     extends State<DeleteItemInListViewPopupMenu> {
 
   _onSelected(dynamic val) {
+
+    var numId = dbBookingsListNew.indexOf(val);
  setState(() => AlreadyBookedD.removeWhere((data) => data == val));
 setState(() => dbBookingsListNew.removeWhere((data) => data == val));
 
-      //   databaseReference.collection("Bookings").document(ID)
-       // .delete();
+         databaseReference.collection("Bookings").document(iDList[numId].toString())
+        .delete();
 
 
    AlreadyBD(AlreadyBookedD);
