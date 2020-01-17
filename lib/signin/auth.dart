@@ -1,4 +1,4 @@
-import 'package:brew_crew/models/user.dart';
+import 'package:tcegapp/signin/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {

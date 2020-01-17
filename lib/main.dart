@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
+import 'signin/wrapper.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 // var actionCodeSettings = ActionCodeSettings.Builder()
@@ -233,12 +234,12 @@ class Login extends StatelessWidget {
           overline: TextStyle(fontFamily: 'NotoSans'),
         ),
       ),
-      home: LoginScreen(),
+      home: Wrapper(),
       navigatorObservers: [TransitionRouteObserver()],
-      routes: {
-        LoginScreen.routeName: (context) => LoginScreen(),
+      // routes: {
+      //   LoginScreen.routeName: (context) => LoginScreen(),
 
-      },
+      // },
     );
   }
 

@@ -1,6 +1,6 @@
-import 'package:brew_crew/models/user.dart';
-import 'package:brew_crew/screens/authenticate/authenticate.dart';
-import 'package:brew_crew/screens/home/home.dart';
+import 'package:tcegapp/signin/user.dart';
+import 'package:tcegapp/signin/authenticate.dart';
+import 'package:tcegapp/signin/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

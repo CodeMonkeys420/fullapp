@@ -1,8 +1,8 @@
-import 'package:brew_crew/screens/wrapper.dart';
-import 'package:brew_crew/services/auth.dart';
+import 'package:tcegapp/signin/wrapper.dart';
+import 'package:tcegapp/signin/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:brew_crew/models/user.dart';
+import 'package:tcegapp/signin/user.dart';
 
 void main() => runApp(MyApp());
 

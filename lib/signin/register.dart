@@ -1,4 +1,4 @@
-import 'package:brew_crew/services/auth.dart';
+import 'package:tcegapp/signin/auth.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {

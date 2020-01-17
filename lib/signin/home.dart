@@ -1,4 +1,4 @@
-import 'package:brew_crew/services/auth.dart';
+import 'package:tcegapp/signin/auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.brown[50],
         appBar: AppBar(
-          title: Text('Brew Crew'),
+          title: Text('TCEG'),
           backgroundColor: Colors.brown[400],
           elevation: 0.0,
           actions: <Widget>[
