@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:timezone/timezone.dart';
 import 'main.dart';
-import 'Database.dart';
 import 'contacts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'BookingsList.dart';
@@ -116,7 +115,7 @@ class MyHomePageState extends State<MyHomePageProfile>  {
 
                   textColor: Colors.white,
                   color: colorCustom,
-                  onPressed:()=> initDB(),
+                  onPressed:()=> getData(),
                   icon: Icon(Icons.cancel),
                   label: Text('Logout'),
                 )
