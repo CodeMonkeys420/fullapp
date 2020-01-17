@@ -200,7 +200,14 @@ class editPage extends StatelessWidget {
 
 
                    TextFormField(
-                   decoration: InputDecoration(labelText: 'Enter your username'
+                   decoration: InputDecoration(labelText: 'Enter your Name'
+                   ),
+                     controller: myControllerName,
+                      /* initialValue: name,*/
+                   )
+                    ,
+                    TextFormField(
+                   decoration: InputDecoration(labelText: 'Enter your Surname'
                    ),
                      controller: myControllerName,
                       /* initialValue: name,*/
@@ -236,6 +243,9 @@ class editPage extends StatelessWidget {
                           else{
                             details = myController.text;
                             name = myControllerName.text;
+
+
+
                             Navigator.pop(context);
                           }
 
