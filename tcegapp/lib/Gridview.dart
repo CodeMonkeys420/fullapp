@@ -25,7 +25,7 @@ var FacilityReference;
 var price;
 var UserID;
 String FacilityID;
-/*Set <String> unselectableDates= {'2019-12-08'};*/
+
 String sanitizeDateTime(DateTime dateTime) => "${dateTime.year}-${dateTime.month}-${dateTime.day}";
 
 Set<String> getDateSet(List<DateTime> dates) => dates.map(sanitizeDateTime).toSet();
@@ -659,24 +659,62 @@ class bookSpotState extends State<bookSpot> {
                                     firstDate: DateTime.now(),
                                   initialDate: currentValue ?? DateTime.now(),
                                 
-                                    lastDate: DateTime(2100));
+                                    lastDate: DateTime(2400));
 
 
                                 if (date != null) {
-                                /*  final time = await showTimePicker(
+                                  var month ;
+                               if(date.month == 1)
+                               {
+                                  month='January';
 
-                                    context: context,
+                               }
+                               else if(date.month == 2){
 
-                                    initialTime:
-                                    TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                                 month='February';
+                               }
+                              else if(date.month == 3){
 
-                                 );
+                                 month='March';
+                               }
+                               else if(date.month == 4){
 
-                                  bookingsDate = DateTimeField.combine(date, time);
-                                  return DateTimeField.combine(date, time);
-                                  */
+                                 month='April';
+                               }
+                              else if(date.month == 5){
 
-                                  bookingsDate = date;
+                                 month='May';
+                               }
+
+                              else if(date.month == 6){
+
+                                 month='June';
+                               }
+                              else if(date.month == 7){
+
+                                 month='July';
+                               }
+                              else if(date.month == 8){
+
+                                 month='August';
+                               }
+                              else if(date.month == 9){
+
+                                 month='September';
+                               }
+                              else if(date.month == 10){
+
+                                 month='October';
+                               }
+                              else if(date.month == 11){
+
+                                 month='November';
+                               }
+                              else if(date.month == 12){
+
+                                 month='December';
+                               }
+                                  bookingsDate = date.weekday.toString()+' '+month+' '+date.year.toString() ;
                                   return date;
                                 } else {
 
@@ -807,22 +845,20 @@ print(Place+bookingsDate.toString()+time +' testing!!!!!!!!!!');
                                              UserID='/Users/LyAhgM0Du7ajtAhEEYkW' ;
                                             price = 0;         //defualt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                                    //       databaseReference.collection('Bookings').document()
-                                       //   .setData({ 'AmmountPeople': AmmountOfPeople,'Date': bookingsDate,'FacilityID': FacilityReference
-                                      //    ,'Price': price,'UserID': UserID});
-
+                            
 
 
                                                     final DocumentReference documentReference = 
-                                                      await databaseReference.collection("Bookings").add({ 'AmmountPeople': AmmountOfPeople,'Date': bookingsDate,'FacilityID': FacilityReference
+                                                      await databaseReference.collection("Bookings").add({ 'AmmountPeople': AmmountOfPeople,'Date': bookingsDate.toString(),'Time':time,
+                                                      'FacilityID': FacilityReference
                                           ,'Price': price,'UserID': UserID});
 
                                                     final String groupID = documentReference.documentID;
 
-                                           AlreadyBookedDate.add(bookingsDate);
+                                         //  AlreadyBookedDate.add(bookingsDate);
                              
-                                          NameL(BookingName,AmmountOfPeople.toString(),bookingsDate.toString(),time,Place,IdexCounter,groupID);
-                                          AlreadyBooked.add(Place+bookingsDate.toString()+time);
+                                        //  NameL(BookingName,AmmountOfPeople.toString(),bookingsDate.toString(),time,Place,IdexCounter,groupID);
+                                        //  AlreadyBooked.add(Place+bookingsDate.toString()+time);
 
 
                                           BookingName = '';
@@ -867,17 +903,17 @@ void PlaceName (var indexNum, var nameIndex) {
 
       if (nameIndex == 0) {
         FacilityID= 'Yz4sb6xBx2hvdpN7HmZX';
-          FacilityReference = '/Facilities/Yz4sb6xBx2hvdpN7HmZX';
+          FacilityReference = 'Yz4sb6xBx2hvdpN7HmZX';
       Place = 'POLO CLUB RESTAURANT';
       }
       else if (nameIndex == 1) {
         FacilityID= '5mNcafO5KtopVZaEKCIq';
         Place = 'THE VALLEY RESTAURANT';
-        FacilityReference = '/Facilities/5mNcafO5KtopVZaEKCIq';
+        FacilityReference = '5mNcafO5KtopVZaEKCIq';
       }
       else if (nameIndex == 2) {
          FacilityID= 'S0zfNxaQSqoKAzRhwIuZ';
-        FacilityReference = '/Facilities/S0zfNxaQSqoKAzRhwIuZ';
+        FacilityReference = 'S0zfNxaQSqoKAzRhwIuZ';
         Place = 'Fleet Coffee roastery ';
       }
 
@@ -887,7 +923,7 @@ void PlaceName (var indexNum, var nameIndex) {
 
     if (nameIndex == 0) {
       FacilityID= 'lbAMWRvPesPkVypJfOkb';
-      FacilityReference='/Facilities/lbAMWRvPesPkVypJfOkb';
+      FacilityReference='lbAMWRvPesPkVypJfOkb';
       Place = 'L’HUGUENOT VENUE & VINOTEQUE';
     }
 
@@ -901,11 +937,11 @@ void PlaceName (var indexNum, var nameIndex) {
     if (nameIndex == 0) {
       FacilityID= 'isBzGSOgF7qS3PxCyAUv';
       Place =   'PEARL VALLEY JACK NICKLAUS SIGNATURE GOLF COURSE';
-      FacilityReference = '/Facilities/isBzGSOgF7qS3PxCyAUv';
+      FacilityReference = 'isBzGSOgF7qS3PxCyAUv';
     }
     else{
       FacilityID= 'BdgxN0CITYMYJJqOQ06f';
-FacilityReference = '/Facilities/BdgxN0CITYMYJJqOQ06f';
+FacilityReference = 'BdgxN0CITYMYJJqOQ06f';
       Place = 'SwingFit Training Academy';
     }
 
@@ -921,7 +957,7 @@ FacilityReference = '/Facilities/BdgxN0CITYMYJJqOQ06f';
 
     if (nameIndex == 0) {
       FacilityID= '5rbhWfXzl5Loq6oCrreU';
-       FacilityReference = '/Facilities/5rbhWfXzl5Loq6oCrreU';
+       FacilityReference = '5rbhWfXzl5Loq6oCrreU';
       Place = 'CAMELOT SPA VAL DE VIE';
     }
 
@@ -935,7 +971,7 @@ FacilityReference = '/Facilities/BdgxN0CITYMYJJqOQ06f';
     if (nameIndex == 0) {
       FacilityID= 'CHYKh3mWb3xVm2m2EHwN';
       Place = 'PEARL VALLEY HOTEL BY MANTIS';
-       FacilityReference = '/Facilities/CHYKh3mWb3xVm2m2EHwN';
+       FacilityReference = 'CHYKh3mWb3xVm2m2EHwN';
       
     }
 
@@ -950,40 +986,40 @@ FacilityReference = '/Facilities/BdgxN0CITYMYJJqOQ06f';
 
     {
       FacilityID= 'DlaQvFB5NShSbh0lCoaA';
-      FacilityReference = '/Facilities/DlaQvFB5NShSbh0lCoaA';
+      FacilityReference = 'DlaQvFB5NShSbh0lCoaA';
       Place = 'Polo Academy Lessons';
     }
     else if (nameIndex==1)
     {
       FacilityID= 'uCqK1eTNgERkvagM8n7L';
       Place =    'Tennis';
-      FacilityReference = '/Facilities/uCqK1eTNgERkvagM8n7L';
+      FacilityReference = 'uCqK1eTNgERkvagM8n7L';
     }
     else if (nameIndex==2)
     {
       FacilityID= 'tjkK8Nj780J726Z3gARA';
-      FacilityReference = '/Facilities/tjkK8Nj780J726Z3gARA';
+      FacilityReference = 'tjkK8Nj780J726Z3gARA';
       Place = 'Equestrian competitive coaching';
 
     }
     else if (nameIndex==3)
     {
       FacilityID= 'pVNuIBj0uM300FJPszet';
-      FacilityReference = '/Facilities/pVNuIBj0uM300FJPszet';
+      FacilityReference = 'pVNuIBj0uM300FJPszet';
       Place = 'Equestrian riding school';
 
     }
     else if (nameIndex==4)
     {
       FacilityID= 'hCKDdzKRknzhVfT3yA9h';
-      FacilityReference = '/Facilities/hCKDdzKRknzhVfT3yA9h';
+      FacilityReference = 'hCKDdzKRknzhVfT3yA9h';
       Place = 'Pearl valley Boma';
 
     }
     else if (nameIndex==5)
     {
       FacilityID= '6pjxPBq1RQ61FmpXpH1p';
-      FacilityReference = '/Facilities/6pjxPBq1RQ61FmpXpH1p';
+      FacilityReference = '6pjxPBq1RQ61FmpXpH1p';
       Place = 'Ryk Neethling swim school';
 
     }

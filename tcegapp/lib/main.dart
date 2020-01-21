@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
+
 // import 'package:firebase_auth/firebase_auth.dart';
 
 // var actionCodeSettings = ActionCodeSettings.Builder()
@@ -78,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage>  {
 
   @override
   Widget build(BuildContext context)  {
-
+   getDataF();
     _getCurrentLocation();
 
 

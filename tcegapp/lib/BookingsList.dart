@@ -135,12 +135,14 @@ setState(() => dbBookingsListNew.removeWhere((data) => data == val));
             .map((data) => ListTile(
           title: Text(data),
           trailing: PopupMenuButton(
+            
             onSelected: _onSelected,
             icon: Icon(Icons.menu),
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: data,
                 child: Text("Delete"),
+                
               ),
             ],
           ),
@@ -162,41 +164,19 @@ var dbBookingsListNew = new List();
 var iDList = new List();
 
 
-class gettingDataP{
-
-gettingDataP(){
- 
-
-setDate();
 
 
-}
+void setList(List dbBookingsList , List iDListNew){
+  dbBookingsListNew = dbBookingsList;
+iDList=iDListNew ;
 
-void setDate(){
   
-databaseReference
-.collection("Bookings")
-.getDocuments()
-.then((QuerySnapshot snapshot) {
-snapshot.documents.forEach((f) { 
-
-
-  dbBookingsListNew.add('${f.data}}');
-iDList.add(
-  f.documentID);
-
-});
-});
-print(dbBookingsListNew.toString()+' list 1@@@@@@@@@@@@@@@');
-print(iDList.toString()+' list 2');
-}
-
-
-
-
 
 
 }
+
+
+
 
 
 
