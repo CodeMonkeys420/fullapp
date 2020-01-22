@@ -54,7 +54,7 @@ class MyHomePageState extends State<MyHomePageProfile>  {
 
 void getDataF(){
 
-var counter=0;
+
 databaseReference
 .collection("Facilities")
 .getDocuments()
