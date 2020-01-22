@@ -66,9 +66,6 @@ dbFacList.add(f.data["Name"]);
 });
 });
 
-print(iDFacList);
-
-print(dbFacList);
 
 }
 
@@ -206,7 +203,6 @@ placeholderID=iDFacList.indexOf(facility);
 facName = dbFacList[placeholderID];
 
 
-print(iDFacList.toString()+'!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
 return Card(
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),

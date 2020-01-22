@@ -1127,7 +1127,7 @@ class AlreadyBD {
     AlreadyBooked.clear();
     Deleted.forEach((element) => AlreadyBooked.add(element));
 
-    print(AlreadyBooked.length);
+    
     /*   if(AlreadyBooked.length ==0){
 
       unselectableDates.clear();
@@ -1144,7 +1144,7 @@ class AlreadyBD {
 }
 
 String ImagePathBookPg(var indexNum, var index){
-print(indexNum.toString()+' ' + index.toString());
+//print(indexNum.toString()+' ' + index.toString());
 
   if (indexNum== 0)
   {
