@@ -202,7 +202,18 @@ placeholderID=iDFacList.indexOf(facility);
 
 facName = dbFacList[placeholderID];
 
+  _onSelected(dynamic val) {
 
+   
+
+
+         databaseReference.collection("Bookings").document(val)
+        .delete();
+
+
+ 
+
+  }
 
 return Card(
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
@@ -211,14 +222,11 @@ return Card(
           title: Text(facName),
           subtitle: Text('Booking:  $date at $time for $ammountP'),
              trailing: PopupMenuButton(
-            onSelected: (docId){
-
-             
-            },
+            onSelected: _onSelected ,
             icon: Icon(Icons.menu),
             itemBuilder: (context) => [
               PopupMenuItem(
-                
+                value: docId,
                 child: Text("Cancel"),
               ),
             ],
@@ -240,6 +248,9 @@ else{
 
 
 }
+
+
+
 
 
 
