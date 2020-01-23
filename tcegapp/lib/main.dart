@@ -10,7 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+final databaseReference = Firestore.instance;
 // import 'package:firebase_auth/firebase_auth.dart';
 
 // var actionCodeSettings = ActionCodeSettings.Builder()
@@ -289,7 +290,10 @@ Future<void> _Alert(BuildContext context) {
                if ( lat!= null)
                  {
                    print(lat +' '+Lng);
-
+                   databaseReference.collection('Panic').document()
+                  .setData({ 'Date': Timestamp.now(),'Location':
+                  lat.toString()+' '+Lng.toString(),
+                  'UserID':currentUser});
                  }
 
 
