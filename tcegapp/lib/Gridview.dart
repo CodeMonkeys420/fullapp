@@ -481,7 +481,7 @@ class bookingPageState extends State<bookingPage> {
 
     var size = MediaQuery.of(context).size;
 
-    /*24 is for notification bar on Android*/
+    
     final double itemHeight = (size.height - kToolbarHeight -300) ;
     final double itemWidth = size.width +50;
 
@@ -520,7 +520,7 @@ class bookingPageState extends State<bookingPage> {
                                     image:AssetImage(ImagePathBookPg(booking,index)),
                                     fit:BoxFit.cover
                                 ),
-                                // button text
+                                
                             )
                         ),onTap:(){
                      PlaceName(booking,index);
@@ -543,7 +543,7 @@ class bookingPageState extends State<bookingPage> {
                           textColor: Colors.white,
                           color: colorCustom,
                           onPressed:(){
-                         //   Place = index;
+                         
 
                             PlaceName(booking,index);
 
@@ -869,7 +869,7 @@ class bookSpotState extends State<bookSpot> {
                                                           if(f ==  placeholder){counter++;
                                                           }
                                                            
-                                                       //    print(f+' checking ava!!!!!!!!!!');
+                                                       
                                                     });
                                                     bookingList.clear();
                                                           var flagB  = true;
@@ -904,8 +904,7 @@ class bookSpotState extends State<bookSpot> {
                                                               flag =true;
                                                               dropdownValue = '10:00';
                                                               Navigator.pop(context);
-                                                              //bookingList.clear();
-                                                             // print(bookingList.toString()+'!!!!!!!!!!!!!!!!');
+                                                       
 
 
                                                           
