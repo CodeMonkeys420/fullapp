@@ -6,7 +6,7 @@ import 'Bookings.dart';
 import 'contacts.dart';
 import 'Facility.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'BookingsList.dart';
+
 var dbFacList = new List();
 var iDFacList = new List();
 final databaseReference = Firestore.instance;

@@ -9,9 +9,10 @@ import 'package:spinner_input/spinner_input.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
-import 'BookingsList.dart';
+
 final databaseReference = Firestore.instance;
 var time;
+var bookingList = new List();
 String dropdownValue = '10:00';
 var AlreadyBooked = new List();
 var  AlreadyBookedDate = new List();
@@ -595,7 +596,11 @@ class bookSpotState extends State<bookSpot> {
         content: new Text('changes will not be saved'),
         actions: <Widget>[
           new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
+            onPressed: () { 
+              flag = true;
+              Navigator.of(context).pop(false);
+            
+            },
             child: new Text('No'),
           ),
           new FlatButton(
@@ -714,7 +719,7 @@ class bookSpotState extends State<bookSpot> {
 
                                  month='December';
                                }
-                                  bookingsDate = date.weekday.toString()+' '+month+' '+date.year.toString() ;
+                                  bookingsDate = date.day.toString()+' '+month+' '+date.year.toString() ;
                                   return date;
                                 } else {
 
@@ -832,7 +837,7 @@ class bookSpotState extends State<bookSpot> {
                                     if(time == null){_ackAlertTime(context);}
                                     else{
 
-print(Place+bookingsDate.toString()+time +' testing!!!!!!!!!!');
+                                      print(Place+bookingsDate.toString()+time +' testing!!!!!!!!!!');
                                       if(AlreadyBooked.contains(Place+bookingsDate.toString()+time))
                                         {
                                           _ackAlertAlready(context);
@@ -844,32 +849,74 @@ print(Place+bookingsDate.toString()+time +' testing!!!!!!!!!!');
                                        
                                              UserID='/Users/LyAhgM0Du7ajtAhEEYkW' ;
                                             price = 0;         //defualt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                            var counter = 0 ;
+                                                      
 
-                            
+                                                                databaseReference
+                                                            .collection("Bookings")
+                                                            .getDocuments()
+                                                            .then((QuerySnapshot snapshot) {
+                                                            snapshot.documents.forEach((f) { 
+                                                            
+                                                            bookingList.add(f.data["Date"]+f.data["Time"]+f.data["FacilityID"]);
+
+                                                            });
+                                                            });
+                                                            var placeholder = bookingsDate.toString()+time+FacilityReference;
+                                            
+                                                   
+                                                    bookingList.forEach((f){
+                                                          if(f ==  placeholder){counter++;
+                                                          }
+                                                           
+                                                       //    print(f+' checking ava!!!!!!!!!!');
+                                                    });
+                                                    bookingList.clear();
+                                                          var flagB  = true;
+                                                        if(counter>= 2)
+                                                        {
+                                                           flagB = false; 
+                                                          print('bookings full');
+                                                        }
 
 
-                                                    final DocumentReference documentReference = 
-                                                      await databaseReference.collection("Bookings").add({ 'AmmountPeople': AmmountOfPeople,'Date': bookingsDate.toString(),'Time':time,
-                                                      'FacilityID': FacilityReference
-                                          ,'Price': price,'UserID': UserID});
+                                                    if(flagB==false){
+                                                     
+                                                      
+                                                      _ackAlertBookingFull(context);
+                                                        }
+                                                        else
+                                                        {
+                                                     final DocumentReference documentReference = 
+                                                      await databaseReference.collection("Bookings").add({ 
+                                                        'AmmountPeople': AmmountOfPeople,'Date': bookingsDate.toString(),'Time':time,
+                                                       'FacilityID': FacilityReference
+                                                        ,'Price': price,'UserID': UserID});
+                                                        
 
-                                                    final String groupID = documentReference.documentID;
 
-                                         //  AlreadyBookedDate.add(bookingsDate);
-                             
-                                        //  NameL(BookingName,AmmountOfPeople.toString(),bookingsDate.toString(),time,Place,IdexCounter,groupID);
-                                        //  AlreadyBooked.add(Place+bookingsDate.toString()+time);
+                                                              BookingName = '';
+                                                              AmmountOfPeople=0;
+                                                              bookingsDate='';
+                                                              time='';
+                                                              Place='';
+                                                              IdexCounter++;
+                                                              flag =true;
+                                                              dropdownValue = '10:00';
+                                                              Navigator.pop(context);
+                                                              //bookingList.clear();
+                                                             // print(bookingList.toString()+'!!!!!!!!!!!!!!!!');
 
 
-                                          BookingName = '';
-                                          AmmountOfPeople=0;
-                                          bookingsDate='';
-                                          time='';
-                                          Place='';
-                                          IdexCounter++;
-                                          flag =true;
-                                          dropdownValue = '10:00';
-                                          Navigator.pop(context);
+                                                          
+                                                        }
+                                                    
+
+                                                  //  final String groupID = documentReference.documentID;
+
+                                                     
+
+                                        
 
 
 
@@ -1121,30 +1168,10 @@ Future<void> _ackAlertAlready(BuildContext context) {
 }
 
 
-class AlreadyBD {
 
-  AlreadyBD(var Deleted) {
-    AlreadyBooked.clear();
-    Deleted.forEach((element) => AlreadyBooked.add(element));
-
-    
-    /*   if(AlreadyBooked.length ==0){
-
-      unselectableDates.clear();
-      unselectableDates= {'2019-12-08'};
-    }
-
-
-
-  }*/
-
-
-  }
-
-}
 
 String ImagePathBookPg(var indexNum, var index){
-//print(indexNum.toString()+' ' + index.toString());
+
 
   if (indexNum== 0)
   {
@@ -1234,3 +1261,22 @@ String ImagePathBookPg(var indexNum, var index){
   }
 }
 
+Future<void> _ackAlertBookingFull(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Error'),
+        content: const Text('Please choose another day or time'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}

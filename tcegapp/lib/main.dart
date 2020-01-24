@@ -11,6 +11,7 @@ import 'package:geolocator/geolocator.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 final databaseReference = Firestore.instance;
 // import 'package:firebase_auth/firebase_auth.dart';
 
